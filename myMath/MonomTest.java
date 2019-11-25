@@ -24,7 +24,7 @@ public class MonomTest {
 	}
 	private static void test1() {
 		System.out.println("*****  Test1:  *****");
-		String[] monoms ={"2x^-3", "-x","-3.2x^2","0"};
+		String[] monoms ={"2x^3", "-x","-3.2x^2","0"};
 		for(int i=0;i<monoms.length;i++) {
 			Monom m = new Monom(monoms[i]);
 			String s = m.toString();
