@@ -20,7 +20,7 @@ public interface functions extends Collection<function>{
  */
 	public void saveToFile(String file) throws IOException;
 /**
- * Draws all the functions in the collection in a GUI window using the
+ * Draws all the functions in the collection in a GUI window using the delete
  * given parameters for the GUI windo and the range & resolution
  * @param width - the width of the window - in pixels
  * @param height - the height of the window - in pixels
