@@ -131,8 +131,10 @@ public class Polynom implements Polynom_able{
 	 * @see myMath.Polynom_able#equals(myMath.Polynom_able)
 	 */
 	@Override
-	public boolean equals(Polynom_able p1) {
-		Iterator<Monom> itr= p1.iteretor();
+	public boolean equals(Object p1) {
+		if(p1 instanceof Polynom) {
+		 Polynom p1_iterotor= (Polynom)p1;
+		Iterator<Monom> itr= p1_iterotor.iteretor();
 		int i=0;
 		while (i< list_monom.size() && itr.hasNext())
 	{
@@ -143,6 +145,8 @@ public class Polynom implements Polynom_able{
 			i++;
 		}
 		if (i==list_monom.size() && !itr.hasNext()) return true;
+		return false;
+	}
 		return false;
 	}
 
@@ -267,7 +271,7 @@ public class Polynom implements Polynom_able{
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-	String res= "f(x) = ";
+	String res= "";
 	if(this.isZero()) {
 		return res + "0";
 	}

@@ -9,7 +9,7 @@ public interface function extends Serializable{
 	 * return a String representing this complex function
 	 */
 	public String toString();
-	public function initFromString(String s);
+	public function initFromString(String s);//
 	public function copy(); 
 	public boolean equals(Object obj);
 }
