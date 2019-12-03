@@ -89,38 +89,57 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public function copy() {//fix this code
-		return new ComplexFunction(this.op,this.left,this.right);
+		return new ComplexFunction(this.op,this.left.copy(),this.right.copy());
 	}
 
 	@Override
 	public void plus(function f1) {
+	ComplexFunction cf_temp= new ComplexFunction(this.op,this.left,this.right);
+	this.left=cf_temp;
+	this.op=Operation.Plus;
+	this.right= f1;
 		
 	}
 	
 	@Override
 	public void mul(function f1) {
-		
+		ComplexFunction cf_temp= new ComplexFunction(this.op,this.left,this.right);
+		this.left=cf_temp;
+		this.op=Operation.Times;
+		this.right= f1;	
 	}
 
 	@Override
 	public void div(function f1) {
-				
+		ComplexFunction cf_temp= new ComplexFunction(this.op,this.left,this.right);
+		this.left=cf_temp;
+		this.op=Operation.Divid;
+		this.right= f1;
 	}
 
 	@Override
 	public void max(function f1) {
-
+		ComplexFunction cf_temp= new ComplexFunction(this.op,this.left,this.right);
+		this.left=cf_temp;
+		this.op=Operation.Max;
+		this.right= f1;
 	}
 
 	@Override
 	public void min(function f1) {
 	
-		
+		ComplexFunction cf_temp= new ComplexFunction(this.op,this.left,this.right);
+		this.left=cf_temp;
+		this.op=Operation.Min;
+		this.right= f1;
 	}
 
 	@Override
 	public void comp(function f1) {
-	
+		ComplexFunction cf_temp= new ComplexFunction(this.op,this.left,this.right);
+		this.left=cf_temp;
+		this.op=Operation.Comp;
+		this.right= f1;
 	
 	}
 
@@ -139,30 +158,16 @@ public class ComplexFunction implements complex_function {
 		return this.op;
 	}
 	
-	public String tostring() {
-		String answer="";
-		if (this.left instanceof Polynom) {
-			 Polynom ans= (Polynom)this.left;
-			 answer = ans.toString();
-			
-		}
-		if (this.right instanceof Polynom) {
-			Polynom ans= (Polynom)this.right;
-			 answer = ans.toString();
-		}
-		if (this.left instanceof Monom) {
-			Monom ans= (Monom)this.left;
-			 answer = ans.toString();
-			
-		}
-		if (this.right instanceof Monom) {
-			Monom ans= (Monom)this.right;
-			 answer = ans.toString();
+	public String tostring() {//return to this
+		 		return "";
+
 		
-		}
-		
-		
-			return this.op+"("+this.left.toString()+" ,"+  this.right.toString() +answer+ ")";
 	}
 
+  
+
+
+
+
 }
+
