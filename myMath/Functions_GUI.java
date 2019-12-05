@@ -1,64 +1,76 @@
 package myMath;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
+import java.io.*;
+import java.nio.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-
+import java.awt.*;
 import com.google.gson.Gson;
+
 
 
 public class Functions_GUI implements functions {
 	ArrayList<function>arr_function;
 	 public Functions_GUI() {
-		 arr_function = new ArrayList<function>();
-		 arr_function.add(new Polynom("x^2"));
+		 arr_function = new ArrayList<function>(); 
 	}
 	
 	@Override
 	public void initFromFile(String file) throws IOException {
 		
-			
-		 
-		
+		  ComplexFunction cf_intofile = new ComplexFunction(new Polynom("0"));//Complexfunctions in order to get into initfromastring
+		  BufferedReader br = new BufferedReader(new FileReader(file)); 
+		  String st; 
+		  while ((st = br.readLine()) != null) {
+			  arr_function.add(cf_intofile.initFromString(st));
+		  } 		
 		
 	}
 
 	@Override
 	public void saveToFile(String file) throws IOException {
-		// TODO Auto-generated method stub
-		
+		 BufferedWriter outputWriter = null;
+		  outputWriter = new BufferedWriter(new FileWriter(file));
+		  for (int i = 0; i < arr_function.size(); i++) {
+		    outputWriter.write(arr_function.get(i).toString());
+		    outputWriter.newLine();
+		  }
+		  outputWriter.flush();  
+		  outputWriter.close();  
+	
 	}
 
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
-		 // the function y = sin(4x) + sin(20x), sampled at n+1 points
-        // between x = 0 and x = pi
-		int n=100;
-        double[] x = new double[n+1];
-        double[] y = new double[n+1];
-        for (int i = 0; i <= n; i++) {
-            x[i] = this.arr_function.get(0).f(i);
-            y[i] = this.arr_function.get(0).f(i);
-            
-        }
+		StdDraw.setCanvasSize(width,height);
+		StdDraw.setXscale(rx.get_min(), rx.get_max());
+		StdDraw.setYscale(ry.get_min(), ry.get_max());
+		StdDraw.line(rx.get_min(), 0, rx.get_max(), 0);
+		StdDraw.line(0, ry.get_min(), 0, ry.get_max());
+		drawfunctions(arr_function.get(0),rx,ry);
 
-        // rescale the coordinate system
-        StdDraw.setXscale(0, Math.PI);
-        StdDraw.setYscale(-10, 10);
-
-        // plot the approximation to the function
-        for (int i = 0; i < n; i++) {
-            StdDraw.line(x[i], y[i], x[i+1], y[i+1]);
-        }
-		}
 		
-	
+	}
+	private void drawfunctions(function f,Range rx,Range ry) {
+		int x_points[]=new int[(int) (Math.abs(rx.get_min())+Math.abs(rx.get_max()))];
+		int y_points[]=new int[(int) (Math.abs(ry.get_min())+Math.abs(ry.get_max()))];
+		double count=rx.get_min();
+		for(int i=0;i<x_points.length;i++) {
+			x_points[i]=(int) f.f(count++);
+		}
+		count = ry.get_min();
+		for(int i=0;i<y_points.length;i++) {
+			y_points[i]=(int) f.f(count++);
+		}
+		Polygon p = new Polygon();
+		StdDraw.polygon(x_points, y_points);
+		
+		
+		
+		
+	}
 
 	@Override
 	public void drawFunctions(String json_file) {
@@ -143,11 +155,6 @@ public class Functions_GUI implements functions {
 		return null;
 	}
 
-	static String readFile(String path, Charset encoding) 
-			  throws IOException 
-			{
-			  byte[] encoded = Files.readAllBytes(Paths.get(path));
-			  return new String(encoded, encoding);
-			}
+
 
 }
