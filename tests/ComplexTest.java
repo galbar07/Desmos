@@ -85,12 +85,13 @@ public class ComplexTest {
 	public static void 	 testguifunction() throws IOException {
 		
 		Functions_GUI f = new Functions_GUI();
-		f.initFromFile("file_test.txt");
-		f.saveToFile("fuchsi.txt");
-		int w=1000, h=600, res=200;
-		Range rx = new Range(-10,10);
-		Range ry = new Range(-5,15);
-		f.drawFunctions(w,h,rx,ry,res);
+//		f.initFromFile("file_test.txt");
+//		f.saveToFile("fuchsi.txt");
+//		int w=1000, h=600, res=200;
+//		Range rx = new Range(-10,10);
+//		Range ry = new Range(-5,15);
+//		f.drawFunctions(w,h,rx,ry,res);
+		f.drawFunctions("test.txt");
 
 	
 

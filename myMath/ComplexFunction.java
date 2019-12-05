@@ -13,7 +13,13 @@ public class ComplexFunction implements complex_function {
 	this.right=new Polynom("0");	
 	}
 	
-	
+	public ComplexFunction(String root,function left,function right ) {
+		this.op=valid_opreation(root);
+		this.left=left.copy();
+		this.right=right.copy();
+		
+		
+	}	
 	public ComplexFunction(Operation root,function left,function right ) {
 	this.op=root;
 	this.left=left.copy();
@@ -60,7 +66,6 @@ public class ComplexFunction implements complex_function {
 			Monom temp = (Monom)this.left;
 			sum+= temp.f(x);
 		}
-		System.out.println("No Opertion..."); // if the String isn't has opertion
 		return -1;
 	}
 
@@ -92,20 +97,8 @@ public class ComplexFunction implements complex_function {
 	if (s.charAt(size)==')') size--;
 	String right = s.substring(index+1,size+1);
 	
-	Operation options=Operation.Plus;
-	if(op.equals("plus"))options=Operation.Plus;
-	else if(op.equals("times"))options=Operation.Times;
-	else if(op.equals("divid"))options=Operation.Divid;
-	else if(op.equals("none"))options=Operation.None;
-	else if(op.equals("max"))options=Operation.Max;
-	else if(op.equals("min"))options=Operation.Min;
-	else if(op.equals("comp"))options=Operation.Comp;
-	else  { throw new RuntimeException("ERROR OPREATOR");}
-
-	
-
-	
-	
+	Operation options=valid_opreation(op);
+		
 	return new ComplexFunction(options,initFromString(left),initFromString(right));
 	
 }
@@ -164,8 +157,11 @@ public class ComplexFunction implements complex_function {
 }
 
 	@Override
-	public function copy() {//fix this code
-		return new ComplexFunction(this.op,this.left.copy(),this.right.copy());
+	public function copy() {
+function left= this.left.copy();
+function right = this.right.copy();
+
+	return new ComplexFunction(this.op,left,right);
 	}
 
 	@Override
@@ -230,6 +226,19 @@ public class ComplexFunction implements complex_function {
 	public String toString() {
 		String ans= this.op + "(";
 		return ans+ this.left.toString()+","+this.right.toString()+")";
+		
+	}
+	
+	private static Operation valid_opreation(String op) {
+		op=op.toLowerCase();
+		if(op.equals("plus"))return Operation.Plus;
+		else if(op.equals("times")||op.equals("mul"))return Operation.Times;
+		else if(op.equals("div"))return Operation.Divid;
+		else if(op.equals("none"))return Operation.None;
+		else if(op.equals("max"))return Operation.Max;
+		else if(op.equals("min"))return Operation.Min;
+		else if(op.equals("comp"))return Operation.Comp;
+		else  { throw new RuntimeException("ERROR OPREATOR");}
 		
 	}
 
