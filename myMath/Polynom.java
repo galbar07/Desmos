@@ -137,7 +137,7 @@ public class Polynom implements Polynom_able{
 		Iterator<Monom> itr= p1_iterotor.iteretor();
 		int i=0;
 		while (i< list_monom.size() && itr.hasNext())
-	{
+		{
 			Monom m1= itr.next();
 			if (!(list_monom.get(i).equals(m1))) {
 				return false;
@@ -293,8 +293,7 @@ public class Polynom implements Polynom_able{
 
 	@Override
 	public function initFromString(String s) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Polynom(s);
 	}
 	
 

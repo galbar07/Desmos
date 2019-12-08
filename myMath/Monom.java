@@ -16,6 +16,8 @@ public class Monom implements function{
 	public static final Monom MINUS1 = new Monom(-1,0);
 	public static final double EPSILON = 0.0000001;
 	public static final Comparator<Monom> _Comp = new Monom_Comperator();
+	private double _coefficient; 
+	private int _power;
 	public static Comparator<Monom> getComp() {return _Comp;}
 
 	public Monom(double a, int b){
@@ -158,10 +160,13 @@ public class Monom implements function{
 
 	/*Compare between the monom in the diffrence of Epsilon
 	 */
-	public boolean equals (Monom m1) {
+	public boolean equals (Object obj) {
+		if(obj instanceof Monom) {
+		Monom m1 = (Monom)obj;
 	  if((this._power ==  m1._power) && (Math.abs(this._coefficient-m1._coefficient)<EPSILON)) {
 		 return true; 
 	  }
+	}
 	  return false;
 	}
 	
@@ -173,13 +178,12 @@ public class Monom implements function{
 		if(p<0) {throw new RuntimeException("ERR the power of Monom should not be negative, got: "+p);}
 		this._power = p;
 	}
-	private static Monom getNewZeroMonom() {return new Monom(ZERO);}
-	private double _coefficient; 
-	private int _power;
+	
+	
+	
 	@Override
 	public function initFromString(String s) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Monom(s);
 	}
 
 	@Override
@@ -187,6 +191,7 @@ public class Monom implements function{
 		return (new Monom(this._coefficient,this._power));
 	}
 
+	private static Monom getNewZeroMonom() {return new Monom(ZERO);}
 
 
 }

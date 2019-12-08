@@ -6,6 +6,7 @@ public class ComplexFunction implements complex_function {
     private function left;
     private function right;
     Operation op;
+    public static final double EPSILON = 0.0000001;
 
 	public ComplexFunction(function f) {
 	this.op=Operation.None;
@@ -83,85 +84,28 @@ public class ComplexFunction implements complex_function {
 		return f;
 		
 	}
-	private function recInitinitFromString(String s) {
-	s=s.toLowerCase();
-	int index_left=s.indexOf('(');
-	String op=s.substring(0,index_left);
-	int index = index_left+ indexParentParenthesis(s.substring(index_left+1, s.length()-1));
-	int size= index;
-	if (s.charAt(size)== ')') size++;
-	if (s.charAt(size)=='^') size++;
-	String left= s.substring(index_left+1,size);
-	if (s.charAt(index+1)==',') index++;
-	size = s.length()-1;
-	if (s.charAt(size)==')') size--;
-	String right = s.substring(index+1,size+1);
-	
-	Operation options=valid_opreation(op);
-		
-	return new ComplexFunction(options,initFromString(left),initFromString(right));
-	
-}
-
-
-	private int indexParentParenthesis(String s) {
-		Stack <Character> st = new Stack <Character>();
-		if (!s.contains("(")) {
-			return s.indexOf(",")+1;
-		}
-
-		int index= s.indexOf('(');
-		st.push('(');
-		for (int i = index+1; i < s.length()-1; i++) {
-			char curr= s.charAt(i);
-			if (curr=='(') {
-				st.push(curr);
-			}
-			if (curr == ')') {
-				st.pop();
-			}
-			if (st.empty() ) return i+1;
-		}
-		return -1;
-	}
-
-
-	private boolean checkParenthesisComma(String s) { // Check for balanced parentheses
-		Stack <Character> st = new Stack <Character>();
-		Stack <Character> stComma = new Stack <Character>();
-		for (int i = 0; i < s.length(); i++) {
-			char curr = s.charAt(i);
-			if (curr== '(') {
-				st.push(curr);
-				stComma.push(curr);}
-				if (curr == ')') {
-					if (st.isEmpty()) { // if ((st.isEmpty()? return false : st.pop
+    
+	public boolean equals(Object obj) {
+		if(!(obj instanceof function)) return false;
+			function f = (function)obj;
+		for(double i=-1;i<1;i+=EPSILON) {
+			if(this.f(i)!=f.f(i)) {
 				return false;
 			}
-			else {
-				st.pop();
-			}
-			
+		}
+		return true;
+	
 		
-		}
-		if (curr == ',') {
-			if (stComma.isEmpty()) { // if ((st.isEmpty()? return false : st.pop
-				return false;
-			}
-			else {
-				stComma.pop();
-			}
-		}
+		
+	
 	}
-	return st.isEmpty()&&stComma.isEmpty();
-}
+
 
 	@Override
 	public function copy() {
-function left= this.left.copy();
-function right = this.right.copy();
-
-	return new ComplexFunction(this.op,left,right);
+		function left= this.left.copy();
+		function right = this.right.copy();
+		return new ComplexFunction(this.op,left,right);
 	}
 
 	@Override
@@ -241,8 +185,77 @@ function right = this.right.copy();
 		else  { throw new RuntimeException("ERROR OPREATOR");}
 		
 	}
+	
+	private int indexParentParenthesis(String s) {
+		Stack <Character> st = new Stack <Character>();
+		if (!s.contains("(")) {
+			return s.indexOf(",")+1;
+		}
 
-  
+		int index= s.indexOf('(');
+		st.push('(');
+		for (int i = index+1; i < s.length()-1; i++) {
+			char curr= s.charAt(i);
+			if (curr=='(') {
+				st.push(curr);
+			}
+			if (curr == ')') {
+				st.pop();
+			}
+			if (st.empty() ) return i+1;
+		}
+		return -1;
+	}
+
+
+	private boolean checkParenthesisComma(String s) { // Check for balanced parentheses
+		Stack <Character> st = new Stack <Character>();
+		Stack <Character> stComma = new Stack <Character>();
+		for (int i = 0; i < s.length(); i++) {
+			char curr = s.charAt(i);
+			if (curr== '(') {
+				st.push(curr);
+				stComma.push(curr);}
+				if (curr == ')') {
+					if (st.isEmpty()) { // if ((st.isEmpty()? return false : st.pop
+				return false;
+			}
+			else {
+				st.pop();
+			}
+			
+		}
+		if (curr == ',') {
+			if (stComma.isEmpty()) { // if ((st.isEmpty()? return false : st.pop
+				return false;
+			}
+			else {
+				stComma.pop();
+			}
+		}
+	}
+	return st.isEmpty()&&stComma.isEmpty();
+}
+
+	private function recInitinitFromString(String s) {
+	s=s.toLowerCase();
+	int index_left=s.indexOf('(');
+	String op=s.substring(0,index_left);
+	int index = index_left+ indexParentParenthesis(s.substring(index_left+1, s.length()-1));
+	int size= index;
+	if (s.charAt(size)== ')') size++;
+	if (s.charAt(size)=='^') size++;
+	String left= s.substring(index_left+1,size);
+	if (s.charAt(index+1)==',') index++;
+	size = s.length()-1;
+	if (s.charAt(size)==')') size--;
+	String right = s.substring(index+1,size+1);
+	
+	Operation options=valid_opreation(op);
+		
+	return new ComplexFunction(options,initFromString(left),initFromString(right));
+	
+}
 
 
 

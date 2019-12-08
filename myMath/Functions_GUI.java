@@ -4,6 +4,7 @@ package myMath;
 import java.io.*;
 import java.nio.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.awt.*;
@@ -47,7 +48,7 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
-		
+		if(rx.isEmpty() ||ry.isEmpty()) return;
 		StdDraw.setCanvasSize(width,height);
 		StdDraw.setXscale(rx.get_min(),rx.get_max());
 		StdDraw.setYscale(ry.get_min(),ry.get_max());
@@ -102,16 +103,30 @@ public class Functions_GUI implements functions {
 			 ans+=st; 
 		  } 		
 		  ans = ans. replaceAll("\\s","");
-		  //
+		  try {
 		  JsonObj p = gson.fromJson(ans, JsonObj.class);
-		  drawFunctions(p.Width,p.Height,p.rx,p.ry,p.Resolution);
+		  ans = ans.replaceAll("[\\{\\}]", "");
+		  String [] Json = ans.split(":");
+		  if(Json.length>6) return;
+		  Range rx = JsonStringtoRange(Json[4]);
+		  Range ry = JsonStringtoRange(Json[5]);
+		  drawFunctions(p.Width,p.Height,rx,ry,p.Resolution);
+		  }
+		  catch(Exception e){throw new RuntimeException("Invalid Json");}
+			  
+		 
+		 
+	}
 		  
-		
-		
-		
+	
+	private Range JsonStringtoRange(String str) {
+		str = str.substring(1,str.indexOf(']'));
+		String array_to_range[]=str.split(",");
+		return new Range(Double.parseDouble(array_to_range[0]),Double.parseDouble(array_to_range[1]));
 		
 		
 	}
+
 	@Override
 	public boolean add(function e) {
 		return arr_function.add(e);
@@ -188,8 +203,8 @@ public class Functions_GUI implements functions {
 		 int Width;
 		 int Height;
 		 int Resolution;
-		 Range rx;
-		 Range ry;
+		 
+		 
 		
 		
 		
