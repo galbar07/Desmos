@@ -71,6 +71,7 @@ public class ComplexFunction implements complex_function {
 	}
 
 	public function initFromString(String s) {
+		s=s.toLowerCase();
 		//break case
 		if (!s.contains(",")){
 			return new Polynom(s);
@@ -177,12 +178,13 @@ public class ComplexFunction implements complex_function {
 		op=op.toLowerCase();
 		if(op.equals("plus"))return Operation.Plus;
 		else if(op.equals("times")||op.equals("mul"))return Operation.Times;
-		else if(op.equals("div"))return Operation.Divid;
+		else if(op.equals("div")||op.equals("divid"))return Operation.Divid;
 		else if(op.equals("none"))return Operation.None;
 		else if(op.equals("max"))return Operation.Max;
 		else if(op.equals("min"))return Operation.Min;
 		else if(op.equals("comp"))return Operation.Comp;
-		else  { throw new RuntimeException("ERROR OPREATOR");}
+		else if(op.equals("error")) return Operation.Error;
+		else { throw new RuntimeException("ERROR OPREATOR");}
 		
 	}
 	
@@ -193,6 +195,8 @@ public class ComplexFunction implements complex_function {
 		}
 
 		int index= s.indexOf('(');
+		int index_psik= s.indexOf(',');
+		if (index_psik<index) return index_psik+1;
 		st.push('(');
 		for (int i = index+1; i < s.length()-1; i++) {
 			char curr= s.charAt(i);
@@ -234,11 +238,12 @@ public class ComplexFunction implements complex_function {
 			}
 		}
 	}
-	return st.isEmpty()&&stComma.isEmpty();
+	return st.isEmpty() && stComma.isEmpty();
 }
+	
 
 	private function recInitinitFromString(String s) {
-	s=s.toLowerCase();
+
 	int index_left=s.indexOf('(');
 	String op=s.substring(0,index_left);
 	int index = index_left+ indexParentParenthesis(s.substring(index_left+1, s.length()-1));

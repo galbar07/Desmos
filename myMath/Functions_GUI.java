@@ -33,6 +33,7 @@ public class Functions_GUI implements functions {
 		
 	}
 
+	//printing all that i have in the array list into the given file
 	@Override
 	public void saveToFile(String file) throws IOException {
 		 BufferedWriter outputWriter = null;
@@ -46,6 +47,7 @@ public class Functions_GUI implements functions {
 	
 	}
 
+	//Drawing the functions according to width ,height and resolution that are given to me
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
 		if(rx.isEmpty() ||ry.isEmpty()) return;
@@ -93,7 +95,7 @@ public class Functions_GUI implements functions {
 		
 	}
 
-
+    //Drawing the function according to the json file that is giving to me
 	@Override
 	public void drawFunctions(String json_file) throws IOException {
 		Gson gson = new Gson();
@@ -118,7 +120,7 @@ public class Functions_GUI implements functions {
 		 
 	}
 		  
-	
+	//Extracting the range from the json string 
 	private Range JsonStringtoRange(String str) {
 		str = str.substring(1,str.indexOf(']'));
 		String array_to_range[]=str.split(",");
@@ -126,6 +128,8 @@ public class Functions_GUI implements functions {
 		
 		
 	}
+	
+	//implemnting all of java collections method of our array list
 
 	@Override
 	public boolean add(function e) {
@@ -192,12 +196,12 @@ public class Functions_GUI implements functions {
 		return arr_function.toArray(a);
 	}
 
-	public function get(int i) {//check with Boaz
-		if(i>=0 && i<this.arr_function.size()) {
-			return this.arr_function.get(i);
-		}
-		return null;
+	public Iterator<function> iteretor() {
+		Iterator <function> itr = arr_function.iterator();
+		return itr;
 	}
+	
+	//our class of jason object that we are taking the jason string inside of him
 
 	public static class JsonObj{
 		 int Width;

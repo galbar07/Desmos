@@ -83,12 +83,11 @@ class Complextest1 {
 					assertEquals(Exepted, c5.toString());
 	}
 	
-	@AfterAll
 	@Test
 	void test_copy () {
 		ComplexFunction c2= new ComplexFunction(Operation.Min, new Polynom("3x^3"), new Polynom("46"));
-		ComplexFunction Exepted= new ComplexFunction(c2.copy());
+		ComplexFunction Exepted= new ComplexFunction(c2.getOp(), c2.left().copy(),c2.right().copy());
 		assertEquals(Exepted, c2);
-
+        
 	}
 }
