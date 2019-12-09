@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.awt.*;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
@@ -20,6 +22,7 @@ public class Functions_GUI implements functions {
 		 arr_function = new ArrayList<function>(); 
 	}
 	
+	 //Getting strings from a file that is given and from this file initfromastring to each functions
 	@Override
 	public void initFromFile(String file) throws IOException {
 		
@@ -99,35 +102,23 @@ public class Functions_GUI implements functions {
 	@Override
 	public void drawFunctions(String json_file) throws IOException {
 		Gson gson = new Gson();
-		BufferedReader br = new BufferedReader(new FileReader(json_file)); 
-		  String st,ans=""; 
-		  while ((st = br.readLine()) != null) {
-			 ans+=st; 
-		  } 		
-		  ans = ans. replaceAll("\\s","");
-		  try {
-		  JsonObj p = gson.fromJson(ans, JsonObj.class);
-		  ans = ans.replaceAll("[\\{\\}]", "");
-		  String [] Json = ans.split(":");
-		  if(Json.length>6) return;
-		  Range rx = JsonStringtoRange(Json[4]);
-		  Range ry = JsonStringtoRange(Json[5]);
-		  drawFunctions(p.Width,p.Height,rx,ry,p.Resolution);
-		  }
-		  catch(Exception e){throw new RuntimeException("Invalid Json");}
-			  
-		 
-		 
+		JsonObj obj = new JsonObj();
+				
+		//Option 2: from JSON file to Object
+		FileReader reader = new FileReader(json_file);
+		obj = gson.fromJson(reader,JsonObj.class);
+
+		Iterator<JsonElement> iter = obj.Range_X.iterator();
+		Iterator<JsonElement> iter1 = obj.Range_Y.iterator();
+
+		Range rx = new Range(iter.next().getAsDouble(), iter.next().getAsDouble());
+		Range ry = new Range(iter1.next().getAsDouble(), iter1.next().getAsDouble());
+
+		drawFunctions(obj.Width, obj.Height, rx, ry, obj.Resolution);
+		  
 	}
 		  
-	//Extracting the range from the json string 
-	private Range JsonStringtoRange(String str) {
-		str = str.substring(1,str.indexOf(']'));
-		String array_to_range[]=str.split(",");
-		return new Range(Double.parseDouble(array_to_range[0]),Double.parseDouble(array_to_range[1]));
-		
-		
-	}
+	
 	
 	//implemnting all of java collections method of our array list
 
@@ -207,6 +198,8 @@ public class Functions_GUI implements functions {
 		 int Width;
 		 int Height;
 		 int Resolution;
+		 JsonArray Range_X;
+		 JsonArray Range_Y;
 		 
 		 
 		
