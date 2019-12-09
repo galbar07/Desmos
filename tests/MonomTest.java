@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import myMath.Monom;
+import myMath.function;
 
 class MonomTest {
 
@@ -42,7 +43,45 @@ class MonomTest {
 			assertEquals(s, sExpected);
 	}
 }
+	@Test
+	void MonomAdd() {
+		System.out.println("****Add Test*****");
+		Monom m1 = new Monom("2x^3");
+		Monom m2 = new Monom("5x^3");
+		Monom asert = new Monom("7x^3");
+		m1.add(m2);
+		assertTrue(m1.equals(asert));		
+	}
 	
+	@Test
+	void MonomMult() {
+		System.out.println("****Mul Test*****");
+		Monom m1 = new Monom("x^2");
+		Monom m2 = new Monom("x^3");
+		Monom m3 = new Monom("x^5");
+		m1.multipy(m2);
+		assertTrue(m1.equals(m3));			
+	}
+	
+	@Test
+	void isZero_test() {
+		System.out.println("****Is Zero*****");
+		int Zero=0;
+		Monom m1 = new Monom("3x^2");
+		Monom m2 = new Monom("-3x^2");
+		m1.add(m2);
+		assertTrue(m1.isZero());		
+	}
+	
+	@Test
+	void Initfromstring() {
+	System.out.println("****Init from a string*****");
+	Monom m1 = new Monom("x^2");
+	function m2 = m1.initFromString("x^2");
+	assertTrue(m2.equals(m1));
+	
+	
+	}
 	
 	
 	

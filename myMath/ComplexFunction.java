@@ -72,6 +72,7 @@ public class ComplexFunction implements complex_function {
 
 	public function initFromString(String s) {
 		s=s.toLowerCase();
+		s = s.replaceAll("\\s","");
 		//break case
 		if (!s.contains(",")){
 			return new Polynom(s);
