@@ -15,13 +15,17 @@ This class represents a polynom which compose of monoms.
 This class represents complex function that can be composed of Monom,Polynom, and ComplexFunction.
 
 ```
-
-
-
-
-
-
-
-
-
+Example
+                       
+                                                         div
+		 *                           mul                            max
+		 * 						       22x^3      53
+		 *                  min               plus
+		 *            3x^3       46      x^2       x^7   
+   
+   
+```                      
+       
+   
+  ![Test Image 1](Capture.JPG)
 
