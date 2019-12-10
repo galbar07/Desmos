@@ -6,8 +6,11 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import myMath.Monom;
-import myMath.function;
+import ex1.ComplexFunction;
+import ex1.Monom;
+import ex1.Operation;
+import ex1.Polynom;
+import ex1.function;
 
 class MonomTest {
 
@@ -66,7 +69,6 @@ class MonomTest {
 	@Test
 	void isZero_test() {
 		System.out.println("****Is Zero*****");
-		int Zero=0;
 		Monom m1 = new Monom("3x^2");
 		Monom m2 = new Monom("-3x^2");
 		m1.add(m2);
@@ -82,6 +84,20 @@ class MonomTest {
 	
 	
 	}
+	
+	@SuppressWarnings("unlikely-arg-type")
+	@Test
+	void TestEquals() {
+	System.out.println("****Test Equals*****");
+	Monom m1 = new Monom("2x^2");
+	ComplexFunction cf = new ComplexFunction(Operation.Plus,new Polynom("x^2"),new Polynom("x^2"));
+	assertTrue(m1.equals(cf));
+	Polynom p = new Polynom("x^2+x^2-1+1");
+	assertTrue(m1.equals(p));
+	assertFalse(m1.equals(new Polynom("x^2")));
+	}
+	
+	
 	
 	
 	

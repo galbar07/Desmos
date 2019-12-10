@@ -5,14 +5,14 @@ import java.util.Iterator;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
-import myMath.ComplexFunction;
-import myMath.Functions_GUI;
-import myMath.Monom;
-import myMath.Operation;
-import myMath.Polynom;
-import myMath.Range;
-import myMath.function;
-import myMath.functions;
+import ex1.ComplexFunction;
+import ex1.Functions_GUI;
+import ex1.Monom;
+import ex1.Operation;
+import ex1.Polynom;
+import ex1.Range;
+import ex1.function;
+import ex1.functions;
 
 /**
  * Partial JUnit + main test for the GUI_Functions class, expected output from the main:

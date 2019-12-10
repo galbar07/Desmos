@@ -4,9 +4,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import myMath.Monom;
-import myMath.Polynom;
-import myMath.function;
+import ex1.ComplexFunction;
+import ex1.Monom;
+import ex1.Operation;
+import ex1.Polynom;
+import ex1.function;
 
 class PolynomTest {
 
@@ -91,5 +93,20 @@ class PolynomTest {
 		assertTrue(pEquals1.equals(pEquals2));
 
 	}
+	
+	
+	@Test
+	void Allfunctions_test2() {
+	System.out.println("Function test");
+	Polynom p1 = new Polynom("5x^2");
+	Monom m1 = new Monom("5x^2");
+	ComplexFunction cf = new ComplexFunction(Operation.Plus,new Polynom("-3x^2"),new Polynom("8x^2"));
+	assertTrue(p1.equals(m1));
+	assertTrue(p1.equals(cf));
+		
+	}
+	
+	
+	
 
 }

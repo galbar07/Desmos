@@ -1,4 +1,4 @@
-package myMath;
+package ex1;
 
 import java.util.Iterator;
 

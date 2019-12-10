@@ -1,5 +1,5 @@
 
-package myMath;
+package ex1;
 
 
 import java.util.Comparator;
@@ -167,6 +167,18 @@ public class Monom implements function{
 		 return true; 
 	  }
 	}
+		
+	if(obj instanceof Polynom_able) {
+		Polynom p = new Polynom(this.toString());
+		return p.equals(obj);
+	}
+	
+	
+	if(obj instanceof ComplexFunction) {
+		return obj.equals(this);
+	}
+	
+		
 	  return false;
 	}
 	

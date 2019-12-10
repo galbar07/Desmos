@@ -1,4 +1,4 @@
-package myMath;
+package ex1;
 
 
 import java.io.*;
@@ -31,7 +31,6 @@ public class Functions_GUI implements functions {
 		  String st; 
 		  while ((st = br.readLine()) != null) {
 			  arr_function.add(cf_intofile.initFromString(st));
-			  
 		  } 		
 		
 	}
@@ -85,7 +84,7 @@ public class Functions_GUI implements functions {
 		//x axis
 		StdDraw.line(rx.get_min(), 0, rx.get_max(), 0);
 		
-		double x_steps= (Math.abs(rx.get_max())+Math.abs(ry.get_min()))/resolution;
+		double x_steps= (Math.abs(rx.get_max())+Math.abs(rx.get_min()))/resolution;
 		for(int i=0;i<arr_function.size();i++) {
 			System.out.println(arr_function.get(i).toString());
 		StdDraw.setPenColor(new Color((int)(Math.random() * 0x1000000)));	

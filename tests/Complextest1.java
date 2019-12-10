@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import myMath.ComplexFunction;
-import myMath.Monom;
-import myMath.Operation;
-import myMath.Polynom;
-import myMath.function;
+import ex1.ComplexFunction;
+import ex1.Monom;
+import ex1.Operation;
+import ex1.Polynom;
+import ex1.function;
 
 class Complextest1 {
 
@@ -95,7 +95,6 @@ class Complextest1 {
 		Polynom p1 = new Polynom("22x^3+53");
 		boolean flag = true;
 		assertTrue(c1.equals(p1));
-		ComplexFunction c2= new ComplexFunction(Operation.Min, new Polynom("22x^3"), new Polynom("53"));
 
 
 	}
