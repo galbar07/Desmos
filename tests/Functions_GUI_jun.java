@@ -11,12 +11,12 @@ import java.util.Iterator;
 
 import org.junit.jupiter.api.Test;
 
-import ex1.ComplexFunction;
-import ex1.Functions_GUI;
-import ex1.Polynom;
-import ex1.complex_function;
-import ex1.function;
-import ex1.functions;
+import EX1.ComplexFunction;
+import EX1.Functions_GUI;
+import EX1.Polynom;
+import EX1.complex_function;
+import EX1.function;
+import EX1.functions;
 
 class Functions_GUI_jun {
 
