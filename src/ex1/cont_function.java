@@ -1,4 +1,4 @@
-package EX1;
+package ex1;
 
 /**
  * The interface represents a continuance function 
