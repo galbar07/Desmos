@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import ex1.ComplexFunction;
-import ex1.Monom;
-import ex1.Operation;
-import ex1.Polynom;
-import ex1.function;
+import EX1.ComplexFunction;
+import EX1.Monom;
+import EX1.Operation;
+import EX1.Polynom;
+import EX1.function;
 
 class MonomTest {
 

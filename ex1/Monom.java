@@ -1,5 +1,5 @@
 
-package ex1;
+package EX1;
 
 
 import java.util.Comparator;

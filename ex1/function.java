@@ -1,4 +1,4 @@
-package ex1;
+package EX1;
 import java.io.Serializable;
 
 /** This interface represents a simple function of type y=f(x), where both y and x are real numbers.
