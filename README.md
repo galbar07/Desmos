@@ -1,4 +1,4 @@
-# Assigment-1-OP
+# Desmos
 This program represent group of functions such as Monom,Polynom and Complex function,And let the user build this functions and draw them by using Java StDraw libary, This program lets you use mathematical opreations on this functions such as add,mult...
 
 
